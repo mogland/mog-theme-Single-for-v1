@@ -1,0 +1,248 @@
+.comments {
+  width: 100%;
+  min-height: 150px;
+  margin: 0;
+  text-align: left;
+}
+
+.form {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  margin-top: 1rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  width: 100%;
+}
+
+.boxMain {
+  margin: 0.5rem;
+}
+
+.textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  max-height: 500px;
+  min-height: 100px;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #f6f8fa;
+}
+
+.textarea:active {
+  background-color: inherit
+}
+
+.submitBtn {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.markdownSupport {
+  font-size: .75rem;
+  line-height: 1rem;
+  color: #57606a;
+}
+
+.supportBtn {
+  display: inline-block;
+  user-select: none;
+  vertical-align: text-bottom;
+  overflow: visible;
+  margin-inline-end: 0.25rem;
+}
+
+.submit {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.submitInner {
+  border-width: 1px;
+  border-radius: 0.375rem;
+  margin-inline-start: 0.25rem;
+  align-items: center;
+  display: inline-flex;
+  background-color: #2da44e;
+  border-color: rgba(27, 31, 36, .15);
+  color: #fff;
+  vertical-align: middle;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding-inline-end: 1rem;
+  padding-bottom: 5px;
+  padding-inline-start: 1rem;
+  padding-top: 5px;
+  position: relative;
+  transition: .2s cubic-bezier(.3, 0, .5, 1);
+  transition-delay: 0s;
+  transition-property: color, background-color, border-color;
+  white-space: nowrap;
+  outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .comments * {
+    border-color: #30363d;
+  }
+
+  .textarea {
+    background-color: #000;
+    border-color: #30363d;
+  }
+
+  .comments {
+    border-color: #30363d;
+  }
+
+  .form {
+    border-color: #30363d;
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  border-width: 1px;
+  border-radius: 0.375rem;
+  min-width: 0;
+  width: 100%;
+  /* display: flex; */
+  font-size: .875rem;
+  line-height: 1.25rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.header {
+  -webkit-padding-start: 1rem;
+  -webkit-padding-end: 1rem;
+  padding-inline-end: 1rem;
+  padding-inline-start: 1rem;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+}
+
+.author {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  padding-top: 0.5rem;
+}
+
+.authorAvatar {
+  align-items: center;
+  display: flex;
+}
+
+.authorAvatar img {
+  border-radius: 9999px;
+  margin-inline-end: 0.5rem;
+}
+
+.authorAvatar span {
+  font-weight: 600;
+}
+
+.author>span {
+  margin-inline-start: 0.5rem;
+  color: #57606a;
+}
+
+.content {
+  overflow-wrap: break-word;
+  border-start-end-radius: 0.25rem;
+  border-start-start-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.replyContainer {
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  border-end-end-radius: 0.375rem;
+  border-end-start-radius: 0.375rem;
+  border-top-width: 1px;
+  padding-top: 0.5rem;
+  /* background-color: #f6f8fa; */
+}
+
+.replyContainer :first-child>.tlLine {
+  height: calc(100% - 16px);
+  top: 16px;
+}
+
+.tlLine {
+  background-color: #d8dee4;
+  flex-shrink: 0;
+  height: 100%;
+  inset-inline-start: 30px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+.replyBox {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-inline-end: 1rem;
+  padding-inline-start: 1rem;
+  display: flex;
+}
+
+.replyAuthorAvatar {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.headerBox {
+  margin-inline-start: 0.5rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.replyHeader {
+  padding: 0;
+}
+
+.more {
+  background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line.svg);
+  background-position: 50%;
+  background-repeat: repeat-x;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.moreBtn {
+  align-items: center;
+  display: flex;
+  -webkit-padding-start: 1.5rem;
+  -webkit-padding-end: 1.5rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  flex-direction: column;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding-inline-end: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-inline-start: 1.5rem;
+  padding-top: 0.5rem;
+  color: #57606a;
+}
+
+.moreBtnInner {
+  font-weight: 600;
+  color: #0969da;
+}
