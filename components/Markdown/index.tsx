@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/Markdown/index.tsx
+ * @FilePath: /nx-theme-Single/components/Markdown/index.tsx
  * @author: Wibus
  * @Date: 2022-08-08 16:01:35
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-10 22:05:56
+ * @LastEditTime: 2022-08-17 01:36:21
  * Coding With IU
  */
 
@@ -25,9 +25,9 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
 
   useEffect(() => {
     setComponents({
-      'img': Image,
-      'pre': PreBlock,
-      'code': CodeBlock,
+      // 'img': Image,
+      // 'pre': PreBlock,
+      // 'code': CodeBlock,
     })
   }, [])
 
@@ -41,7 +41,7 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
         rehypePlugins={[
           rehypeRaw,
         ]}
-        components={isClientSide() && components || {}}
+        // components={isClientSide() && components || {}}
         // render html
       >
         {props.source}
