@@ -55,6 +55,7 @@ function App({ initialData, Component, pageProps }) {
           <Component {...pageProps} />
         </div>
       </main>
+      <Footer />
     </>
   )
 }
