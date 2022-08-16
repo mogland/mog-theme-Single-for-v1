@@ -1,3 +1,4 @@
+import '../styles/kico.css'
 import '../styles/globals.css'
 import type { AppContext } from 'next/app'
 import { Router } from 'next/router'
@@ -9,7 +10,6 @@ import appState from '../states/appState'
 import NextApp from 'next/app'
 import { Header } from '../components/layouts/Header'
 import { Footer } from '../components/layouts/Footer'
-
 function App({ initialData, Component, pageProps }) {
 
   const Progress = new QP({ colorful: false, color: '#27ae60' })
@@ -45,9 +45,16 @@ function App({ initialData, Component, pageProps }) {
     }
   }, [])
 
+  appState.aggregate = initialData
+
   return (
     <>
-      <Component {...pageProps} />
+      <Header />
+      <main>
+        <div className="wrap min">
+          <Component {...pageProps} />
+        </div>
+      </main>
     </>
   )
 }
@@ -77,11 +84,13 @@ App.getInitialProps = async (props: AppContext) => {
   // 获取数据
   // eslint-disable-next-line no-inner-declarations
   async function getHeadinitialData() {
-    return {
-      initialData: {
-        mes: 'hello world'
-      }
+    const aggregatedData = await apiClient("/aggregate")
+    const aggregatedTop = await apiClient("/aggregate/top")
+    const res = {
+      aggregatedData,
+      aggregatedTop,
     }
+    return res
   }
   const initialData = globalThis.data ?? (await getHeadinitialData())
   const appProps = await (async () => {

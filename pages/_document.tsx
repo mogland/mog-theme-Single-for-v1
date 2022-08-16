@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/pages/_document.tsx
+ * @FilePath: /nx-theme-Single/pages/_document.tsx
  * @author: Wibus
  * @Date: 2022-08-07 21:00:31
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-10 23:33:16
+ * @LastEditTime: 2022-08-16 19:26:51
  * Coding With IU
  */
 
@@ -53,6 +53,8 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-startup-image" href="/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
           <link rel="apple-touch-startup-image" href="/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" />
 
+
+          <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/FortAwesome/Font-Awesome/css/font-awesome.min.css" />
         </Head>
 
 
