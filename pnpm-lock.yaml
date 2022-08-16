@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@icon-park/react': 1.4.2
   '@innei-util/eslint-config-react-ts': 0.8.2
-  '@innei/prettier': ^0.9.4
+  '@innei/prettier': 0.9.4
   '@tailwindcss/typography': 0.5.4
   '@types/lodash': 4.14.183
   '@types/node': 18.6.4
@@ -13,26 +13,26 @@ specifiers:
   '@types/react-syntax-highlighter': 15.5.4
   autoprefixer: 10.4.8
   clsx: 1.2.1
-  cross-env: ^7.0.3
+  cross-env: 7.0.3
   eslint: 8.22.0
   eslint-config-next: 12.2.5
   framer-motion: 7.2.0
-  husky: ^8.0.1
+  husky: 8.0.1
   less: 4.1.3
-  lint-staged: ^13.0.3
+  lint-staged: 13.0.3
   lodash: 4.17.21
-  lodash-es: ^4.17.21
+  lodash-es: 4.17.21
   medium-zoom: 1.0.6
   mobx: 6.6.1
   mobx-react-lite: 3.4.0
   next: 12.2.5
-  next-compose-plugins: ^2.2.1
-  next-pwa: ^5.5.5
-  next-seo: ^5.5.0
+  next-compose-plugins: 2.2.1
+  next-pwa: 5.5.5
+  next-seo: 5.5.0
   ohmyfetch: 0.4.18
   postcss: 8.4.16
   postcss-nesting: 10.1.10
-  prettier: ^2.7.1
+  prettier: 2.7.1
   qier-progress: 1.0.4
   react: 18.2.0
   react-dom: 18.2.0
@@ -43,9 +43,9 @@ specifiers:
   react-syntax-highlighter: 15.5.0
   react-use: 17.4.0
   rehype-katex: 6.0.2
-  rehype-raw: ^6.1.1
+  rehype-raw: 6.1.1
   remark-gfm: 3.0.1
-  rimraf: ^3.0.2
+  rimraf: 3.0.2
   tailwindcss: 3.1.8
   typescript: 4.7.4
   valtio: 1.6.3
