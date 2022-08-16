@@ -1,16 +1,23 @@
-import type { GetServerSideProps, NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import Link from 'next/link';
-import { useSnapshot } from 'valtio';
-import appState from '../states/appState';
-import { apiClient } from '../utils/request.util';
+/*
+ * @FilePath: /nx-theme-Single/pages/posts/index.tsx
+ * @author: Wibus
+ * @Date: 2022-08-16 20:57:29
+ * @LastEditors: Wibus
+ * @LastEditTime: 2022-08-16 21:21:47
+ * Coding With IU
+ */
+
+import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
+import { SEO } from "../../components/others/SEO";
+import { apiClient } from "../../utils/request.util";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient("/posts", {
     method: "GET",
     params: {
       page: ctx.query.page || 1,
-      size: 10, // CONFIGS NEEDED
+      size: 5, // CONFIGS NEEDED
     }
   });
   return {
@@ -20,27 +27,24 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
-const Home: NextPage<any> = (props) => {
+const Posts: NextPage<any> = (props) => {
 
-  const appStateSnapshot = useSnapshot(appState) as any;
-  const aggregatedTopSnapshot = appStateSnapshot.aggregate.aggregatedTop.posts
+  // const appStateSnapshot = useSnapshot(appState) as any;
+  // console.log(props.data);
 
   return (
     <>
-      <NextSeo
-        title={`${appStateSnapshot.aggregate.aggregatedData.sites.title} · ${appStateSnapshot.aggregate.aggregatedData.sites.description}`}
-        description={appStateSnapshot.aggregate.aggregatedData.sites.description}
-      />
+      <SEO title="博文" />
 
       <section className="home-title">
-        <h1>{appStateSnapshot.aggregate.aggregatedData.sites.title}</h1>
-        <span>{appStateSnapshot.aggregate.aggregatedData.sites.description}</span>
+        <h1>博文</h1>
+        <span>共撰写了 {props.data.data.length} 篇博文</span>
       </section>
 
       <section className='home-posts'>
 
         {
-          aggregatedTopSnapshot?.map((item: any) => {
+          props.data && props.data.data.map((item: any) => {
             return (
               <div className="post-item" key={item.id}>
                 <h2>
@@ -77,15 +81,37 @@ const Home: NextPage<any> = (props) => {
       </section>
 
       <section className="page-navigator">
-        <span>
-          <Link href="/posts">
-            <span>« 全部文章 »</span>
-          </Link>
-        </span>
+        {
+          props.data.pagination.has_prev_page && (
+            <>
+              <Link href={`/posts?page=${props.data.pagination.current_page - 1}`}>
+                «
+              </Link>
+
+              <Link href={`/posts?page=${props.data.pagination.current_page - 1}`}>
+                {props.data.pagination.current_page - 1}
+              </Link>
+            </>
+          )
+        }
+        {props.data.pagination.current_page}
+        {
+          props.data.pagination.has_next_page && (
+            <>
+              <Link href={`/posts?page=${props.data.pagination.current_page + 1}`}>
+                {props.data.pagination.current_page + 1}
+              </Link>
+
+              <Link href={`/posts?page=${props.data.pagination.current_page + 1}`}>
+                »
+              </Link>
+            </>
+          )
+        }
       </section>
 
     </>
   )
-}
+};
 
-export default Home
+export default Posts;
