@@ -7,7 +7,7 @@
  * Coding With IU
  */
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from './index.module.css'
 import clsx from "clsx";
 import Link from "next/link";
@@ -46,16 +46,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
     "reply": 0
   });
 
-  const getComments = async (props?: number) => {
-    return await apiClient(`/comments/ref/${id}?page=${props || 1}`).then(res => {
-      setList(res);
-      // console.log(res);
-      return res
-    })
-  }
-
   useMount(() => {
-    getComments();
     isClientSide() && setReply({
       ...reply,
       "author": (JSON.parse(localStorage.getItem('guest-message') || '{}')).author,
@@ -64,6 +55,17 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
     })
   })
 
+  const getComments = async (props?: number) => {
+    return await apiClient(`/comments/ref/${id}?page=${props || 1}`).then(res => {
+      setList(res);
+      // console.log(res);
+      return res
+    })
+  }
+
+  useEffect(() => {
+    getComments();
+  }, [])
 
   const Children = ({ children }) => {
     return (children.length) && (
@@ -154,7 +156,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
         }}>
           <div className={clsx(styles["boxMain"])}>
             <div className="p-3 pb-4">
-              <input type="text" style={{backgroundColor: "inherit"}} placeholder="Name" className="focus:outline-none" name="author"
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Name" className="focus:outline-none" name="author"
                 value={reply.author as any}
                 onChange={(e) => {
                   setReply({
@@ -163,7 +165,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <input type="text" style={{backgroundColor: "inherit"}} placeholder="Mail" className="focus:outline-none"
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Mail" className="focus:outline-none"
                 name="mail"
                 value={reply.mail as any}
                 onChange={(e) => {
@@ -173,7 +175,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <input type="text" style={{backgroundColor: "inherit"}} placeholder="Url (optional)" className="focus:outline-none"
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Url (optional)" className="focus:outline-none"
                 name="url"
                 value={reply.url as any}
                 onChange={(e) => {

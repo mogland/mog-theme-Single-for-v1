@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 14:51:52
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-16 22:17:54
+ * @LastEditTime: 2022-08-17 01:25:23
  * Coding With IU
  */
 
@@ -17,7 +17,6 @@ import appState from "../../../states/appState";
 export const Footer: FC = () => {
 
   const aggregateSnapshot = ((useSnapshot(appState)).aggregate as any)
-  console.log(aggregateSnapshot.aggregatedTop.comments)
 
   return (
     <footer>
@@ -52,7 +51,7 @@ export const Footer: FC = () => {
                 <h3 className="title-comments">最近评论：</h3>
                 <ul>
                   {
-                    aggregateSnapshot.aggregatedTop.comments.length && aggregateSnapshot.aggregatedTop.comments?.map((item: any) => {
+                    aggregateSnapshot.aggregatedTop.comments?.length && aggregateSnapshot.aggregatedTop.comments?.map((item: any) => {
                       return (
                         <li>
                           <Link href={`/posts/${item.slug}`}>

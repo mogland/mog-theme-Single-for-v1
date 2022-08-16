@@ -2,7 +2,7 @@ import '../styles/kico.css'
 import '../styles/globals.css'
 import type { AppContext } from 'next/app'
 import { Router } from 'next/router'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { message } from 'react-message-popup'
 import QP from 'qier-progress'
 import { apiClient } from '../utils/request.util'
@@ -37,12 +37,25 @@ function App({ initialData, Component, pageProps }) {
     })
   }, [])
 
+  const [themeType, setThemeType] = useState("dark-theme");
+
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: any) => {
+      // console.log(e.matches)
+      if (e.matches) {
+        setThemeType("dark-theme");
+      } else {
+        setThemeType("light-theme ");
+      }
+    };
     try {
       registerRouterEvents()
-    } finally {
-      document.body.classList.remove('loading')
-    }
+      mediaQuery.addListener(handleChange);
+      setThemeType(mediaQuery.matches ? "dark-theme" : "light-theme");
+    } finally {   
+      document.body.classList.add(themeType);
+    } 
   }, [])
 
   appState.aggregate = initialData

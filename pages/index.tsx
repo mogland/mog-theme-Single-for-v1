@@ -44,7 +44,7 @@ const Home: NextPage<any> = (props) => {
             return (
               <div className="post-item" key={item.id}>
                 <h2>
-                  <Link href="/posts/[slug]" as={`/posts/${item.slug}`}>
+                  <Link href="/posts/[cate]/[slug]" as={`/posts/${item.category.slug}/${item.slug}`}>
                     <span>
                       {item.title}
                     </span>
@@ -63,7 +63,7 @@ const Home: NextPage<any> = (props) => {
                     </Link>
                   </span>
                   <span className="comments">
-                    <Link href="/posts/[slug]" as={`/posts/${item.slug}`}>
+                    <Link href="/posts/[cate]/[slug]" as={`/posts/${item.category.slug}/${item.slug}`}>
                       <span>{item.comments_index} °C</span>
                     </Link>
                   </span>

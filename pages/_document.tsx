@@ -3,11 +3,12 @@
  * @author: Wibus
  * @Date: 2022-08-07 21:00:31
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-16 19:26:51
+ * @LastEditTime: 2022-08-17 00:58:37
  * Coding With IU
  */
 
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import { isClientSide } from "../utils/ssr.util";
 
 
 export default class MyDocument extends Document {
@@ -58,7 +59,7 @@ export default class MyDocument extends Document {
         </Head>
 
 
-        <body id="app" className="loading">
+        <body id="app" className="">
           <Main />
           <NextScript />
         </body>
