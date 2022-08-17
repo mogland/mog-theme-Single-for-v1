@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 14:51:52
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 01:25:23
+ * @LastEditTime: 2022-08-17 21:33:22
  * Coding With IU
  */
 
@@ -33,7 +33,7 @@ export const Footer: FC = () => {
                   {
                     aggregateSnapshot.aggregatedTop.posts?.map((item: any) => {
                       return (
-                        <li>
+                        <li key={item.id}>
                           <Link href={`/posts/${item.slug}`}>
                             <span>{item.title}</span>
                           </Link>
@@ -53,7 +53,7 @@ export const Footer: FC = () => {
                   {
                     aggregateSnapshot.aggregatedTop.comments?.length && aggregateSnapshot.aggregatedTop.comments?.map((item: any) => {
                       return (
-                        <li>
+                        <li key={item.id}>
                           <Link href={`/posts/${item.slug}`}>
                             <span>{item.author}: </span>
                             <span>{item.text}</span>
