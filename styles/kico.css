@@ -263,7 +263,6 @@ pre, code{ font-family: 'Consolas', 'Courier New', monospace }
     border-radius: .5em;
     padding: .25em .5em;
     word-break: break-all;
-    background-color: #f7f2f4;
 }
 
 pre > code{
