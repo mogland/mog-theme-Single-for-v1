@@ -3,12 +3,12 @@
  * @author: Wibus
  * @Date: 2022-08-08 16:01:35
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 21:49:25
+ * @LastEditTime: 2022-08-17 22:37:58
  * Coding With IU
  */
 
 
-import { useEffect, useState } from 'react'
+import React, { FC, memo, RefObject, useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeKatex from 'rehype-katex'
 import gfm from 'remark-gfm'
@@ -19,7 +19,20 @@ import { CodeBlock } from './renderers/CodeBlock'
 import { Image } from './renderers/Image'
 import { PreBlock } from './renderers/PreBlock'
 import { Heading } from './renderers/Header'
-export const Markdown = (props: { source: string, [key: string]: any }) => {
+import { range } from 'lodash'
+import { ensuredForwardRef } from 'react-use'
+import { observer } from 'mobx-react-lite'
+import { processDetails } from './process-tag'
+
+type MarkdownProps = {
+  source: string
+  [key: string]: any
+  children?: string
+}
+
+const __Markdown: FC<MarkdownProps> = ensuredForwardRef<HTMLDivElement, MarkdownProps>(
+  (props: React.PropsWithChildren<MarkdownProps>, ref: React.ForwardedRef<HTMLDivElement>) => {
+
   props.images ? images.data = props.images : null
 
   const [components, setComponents] = useState({})
@@ -39,7 +52,7 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
   }, [])
 
   return (
-    <div>
+    <div id='write'>
       <ReactMarkdown
         remarkPlugins={[
           gfm,
@@ -55,6 +68,8 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
       </ReactMarkdown>
     </div>
   )
-}
+})
 
+export const Markdown = memo(__Markdown)
+Markdown.displayName = 'Markdown'
 export default Markdown

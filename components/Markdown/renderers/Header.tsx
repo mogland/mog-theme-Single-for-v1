@@ -15,11 +15,11 @@ export const Heading: () => React.ElementType<any> = () => {
 
     const { ref } = useInView({
       rootMargin: '-33% 0% -33% 0%',
-      onChange(inView) {
-        if (inView) {
-          console.log(`${title} is in view`)
-        }
-      },
+      // onChange(inView) {
+      //   if (inView) {
+      //     console.log(`${title} is in view`)
+      //   }
+      // },
     })
 
     return (

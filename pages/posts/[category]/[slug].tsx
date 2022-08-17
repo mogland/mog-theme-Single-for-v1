@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
 import Markdown from "../../../components/Markdown";
 import { Seo } from "../../../components/others/SEO";
@@ -21,6 +22,20 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Post: NextPage<any> = (props) => {
 
   const aggregateSnapshot = (useSnapshot(appState) as any).aggregate.aggregatedData;
+
+  useEffect(() => {
+    Array.from(document.querySelectorAll("#write h2")).map((item, index) => {
+      const ele = document.createElement("a")
+      ele.setAttribute("href", `#${item.textContent}`)
+      ele.innerText = item.textContent || "";
+      document.querySelector(".article-list")?.appendChild(ele)
+    })
+    document.body.classList.add("has-trees");
+    return () => {
+      document.body.classList.remove("has-trees");
+    }
+  }, [])
+
 
   return (
     <>
@@ -76,7 +91,12 @@ const Post: NextPage<any> = (props) => {
         </div>
       </section>
       <section className="post-comments">
-         <Comments type="Post" path={props.data.slug} id={props.data.id} />
+        <Comments type="Post" path={props.data.slug} id={props.data.id} />
+      </section>
+      <section className="article-list">
+        <h4>
+          <span className="title">目录</span>
+        </h4>
       </section>
     </>
   )
