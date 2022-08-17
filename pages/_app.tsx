@@ -11,7 +11,7 @@ import NextApp from 'next/app'
 import { Header } from '../components/layouts/Header'
 import { Footer } from '../components/layouts/Footer'
 function App({ initialData, Component, pageProps }) {
-
+  console.time('loading')
   const Progress = new QP({ colorful: false, color: '#27ae60' })
   const registerRouterEvents = useCallback(() => {
     Router.events.on('routeChangeStart', () => {
@@ -37,9 +37,10 @@ function App({ initialData, Component, pageProps }) {
     })
   }, [])
 
-  const [themeType, setThemeType] = useState("dark-theme");
+  const [themeType, setThemeType] = useState("light-theme");
 
   useEffect(() => {
+  
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: any) => {
       // console.log(e.matches)
@@ -53,13 +54,17 @@ function App({ initialData, Component, pageProps }) {
       registerRouterEvents()
       mediaQuery.addListener(handleChange);
       setThemeType(mediaQuery.matches ? "dark-theme" : "light-theme");
-    } finally {   
       document.body.classList.add(themeType);
+    } finally {   
+      console.log("%c Kico Style %c https://paugram.com ","color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;","margin: 1em 0; padding: 5px 0; background: #efefef;");
+      console.log("%c Single %c Styled By Paul ","color: #fff; margin: 1em 0; padding: 5px 0; background: #ffa628;","margin: 1em 0; padding: 5px 0; background: #efefef;");
+      console.log("%cNEXT Space%c https://nx.js.org ","background: #eaeffd;color:#335eea;padding: 5px 6px;","margin: 1em 0; padding: 5px 0;");
     } 
   }, [])
 
   appState.aggregate = initialData
 
+  console.timeEnd('loading')
   return (
     <>
       <Header />

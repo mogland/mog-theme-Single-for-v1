@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-16 20:57:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-16 21:21:47
+ * @LastEditTime: 2022-08-17 21:03:42
  * Coding With IU
  */
 
@@ -47,32 +47,32 @@ const Posts: NextPage<any> = (props) => {
           props.data && props.data.data.map((item: any) => {
             return (
               <div className="post-item" key={item.id}>
-                <h2>
-                  <Link href="/posts/[cate]/[slug]" as={`/posts/${item.category.slug}/${item.slug}`}>
-                    <span>
-                      {item.title}
-                    </span>
+              <h2>
+                <Link href={`/posts/${item.category.slug}/${item.slug}`}>
+                  <span>
+                    {item.title}
+                  </span>
+                </Link>
+              </h2>
+              <p>
+                {item.text.substring(0, 80)}
+              </p>
+              <div className="post-meta">
+                <time className="date">
+                  <span>{item.created.split('T')[0]}</span>
+                </time>
+                <span className="category">
+                  <Link href={`/category/${item.category.slug}`} >
+                    <span>{item.category.name}</span>
                   </Link>
-                </h2>
-                <p>
-                  {item.text.substring(0, 80)}
-                </p>
-                <div className="post-meta">
-                  <time className="date">
-                    <span>{item.created.split('T')[0]}</span>
-                  </time>
-                  <span className="category">
-                    <Link href="/category/[slug]" as={`/category/${item.category.slug}`}>
-                      <span>{item.category.name}</span>
-                    </Link>
-                  </span>
-                  <span className="comments">
-                    <Link href="/posts/[cate]/[slug]" as={`/posts/${item.category.slug}/${item.slug}`}>
-                      <span>{item.comments_index} °C</span>
-                    </Link>
-                  </span>
-                </div>
+                </span>
+                <span className="comments">
+                  <Link href={`/posts/${item.category.slug}/${item.slug}`}>
+                    <span>{item.comments_index} °C</span>
+                  </Link>
+                </span>
               </div>
+            </div>
             )
           }
           )
