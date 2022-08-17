@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 16:01:35
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 01:36:21
+ * @LastEditTime: 2022-08-17 21:49:25
  * Coding With IU
  */
 
@@ -18,6 +18,7 @@ import { isClientSide } from '../../utils/ssr.util'
 import { CodeBlock } from './renderers/CodeBlock'
 import { Image } from './renderers/Image'
 import { PreBlock } from './renderers/PreBlock'
+import { Heading } from './renderers/Header'
 export const Markdown = (props: { source: string, [key: string]: any }) => {
   props.images ? images.data = props.images : null
 
@@ -25,14 +26,20 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
 
   useEffect(() => {
     setComponents({
-      // 'img': Image,
-      // 'pre': PreBlock,
-      // 'code': CodeBlock,
+      'img': Image,
+      'pre': PreBlock,
+      'code': CodeBlock,
+      "h1": Heading(),
+      "h2": Heading(),
+      "h3": Heading(),
+      "h4": Heading(),
+      "h5": Heading(),
+      "h6": Heading(),
     })
   }, [])
 
   return (
-    <div id="write">
+    <div>
       <ReactMarkdown
         remarkPlugins={[
           gfm,
@@ -41,8 +48,8 @@ export const Markdown = (props: { source: string, [key: string]: any }) => {
         rehypePlugins={[
           rehypeRaw,
         ]}
-        // components={isClientSide() && components || {}}
-        // render html
+        components={isClientSide() && components || {}}
+      // render html
       >
         {props.source}
       </ReactMarkdown>

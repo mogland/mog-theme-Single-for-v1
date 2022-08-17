@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/widgets/Comments/index.tsx
+ * @FilePath: /nx-theme-Single/components/widgets/Comments/index.tsx
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-10 19:33:47
+ * @LastEditTime: 2022-08-17 20:56:22
  * Coding With IU
  */
 
@@ -155,7 +155,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
           })
         }}>
           <div className={clsx(styles["boxMain"])}>
-            <div className="p-3 pb-4">
+            <div className="p-3 pb-6">
               <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Name" className="focus:outline-none" name="author"
                 value={reply.author as any}
                 onChange={(e) => {
@@ -199,10 +199,10 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
           </div>
           <div className={clsx(styles["submitBtn"])}>
             <Link href="https://guides.github.com/features/mastering-markdown/">
-              <a className={clsx(styles.markdownSupport)}>
+              <span className={clsx(styles.markdownSupport)}>
                 <svg aria-hidden="true" role="img" className={clsx(styles.supportBtn, "mr-1")} viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path fillRule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg>
                 Styling with Markdown is supported
-              </a>
+              </span>
             </Link>
             <div className={clsx(styles.submit)}>
 
