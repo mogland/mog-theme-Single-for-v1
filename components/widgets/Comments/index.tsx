@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 20:56:22
+ * @LastEditTime: 2022-08-18 15:15:23
  * Coding With IU
  */
 
@@ -154,9 +154,12 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
             message.error(`${reply.reply ? "回复" : "评论"} 失败`)
           })
         }}>
-          <div className={clsx(styles["boxMain"])}>
+          <div className={clsx(styles["boxMain"], "flex")}>
             <div className="p-3 pb-6">
-              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Name" className="focus:outline-none" name="author"
+              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+                你的名字
+              </label>
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Name" className="focus:outline-none mr-5 mb-2  " name="author"
                 value={reply.author as any}
                 onChange={(e) => {
                   setReply({
@@ -165,7 +168,10 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Mail" className="focus:outline-none"
+              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+                你的邮箱
+              </label>
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Mail" className="focus:outline-none mr-5 mb-2 "
                 name="mail"
                 value={reply.mail as any}
                 onChange={(e) => {
@@ -175,7 +181,10 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Url (optional)" className="focus:outline-none"
+              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+                你的站点
+              </label>
+              <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Url (optional)" className="focus:outline-none mb-2 "
                 name="url"
                 value={reply.url as any}
                 onChange={(e) => {
