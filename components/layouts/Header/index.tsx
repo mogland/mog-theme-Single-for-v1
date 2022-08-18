@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 12:28:09
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-16 21:15:04
+ * @LastEditTime: 2022-08-18 15:48:29
  * Coding With IU
  */
 
@@ -27,9 +27,14 @@ export const Header: FC<any> = () => {
         </h4>
       </div>
       <div className="head-action">
-        <div className="toggle-btn"></div>
-        <div className="light-btn"></div>
-        <div className="search-btn"></div>
+        <div className="toggle-btn" onClick={() => {
+          document.querySelector(".head-menu")?.classList.toggle("active")
+        }}></div>
+        <div className="light-btn" onClick={() => {
+          document.body.classList.toggle('dark-theme');
+          document.body.classList.toggle('light-theme');
+        }}></div>
+        <div className="search-btn hidden"></div>
       </div>
       <form className="head-search" method="post">
         <input type="text" name="s" placeholder="搜索什么？" />
