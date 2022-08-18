@@ -1,6 +1,13 @@
 # NEXT Theme -- Single
 > 🎈 一个简洁大气，含夜间模式的 NEXT 博客主题
 
+## Preview
+
+<br />
+
+![preview](https://user-images.githubusercontent.com/62133302/185378244-c4412ce7-0d2a-469b-a1b7-19ef868ce9dc.jpg)
+
+<br />
 
 ## References
 
