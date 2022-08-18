@@ -30,6 +30,7 @@ const nextConfig = withPlugins(plugins, {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  assetPrefix: undefined,
   async rewrites() {
 
     return {
