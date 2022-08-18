@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:15:23
+ * @LastEditTime: 2022-08-18 15:50:53
  * Coding With IU
  */
 
@@ -124,7 +124,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
   }
 
   return (
-    <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300 ml-0">
+    <div className="pt-6 pb-6 text-center  ml-0">
       <div className={clsx(styles["comments"])}>
         <div className="items-center flex flex-auto">
           <div className="flex-wrap whitespace-nowrap items-center flex flex-auto">
@@ -156,7 +156,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
         }}>
           <div className={clsx(styles["boxMain"], "flex")}>
             <div className="p-3 pb-6">
-              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="block mb-2 mr-5  font-semibold">
                 你的名字
               </label>
               <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Name" className="focus:outline-none mr-5 mb-2  " name="author"
@@ -168,7 +168,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="block mb-2 mr-5  font-semibold">
                 你的邮箱
               </label>
               <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Mail" className="focus:outline-none mr-5 mb-2 "
@@ -181,7 +181,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <label className="block mb-2 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="block mb-2 mr-5  font-semibold">
                 你的站点
               </label>
               <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Url (optional)" className="focus:outline-none mb-2 "

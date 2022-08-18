@@ -26,11 +26,11 @@
   min-height: 100px;
   padding: 0.5rem;
   width: 100%;
-  background-color: #f6f8fa;
+  /* background-color: #f6f8fa; */
 }
 
 .textarea:active {
-  background-color: inherit
+  /* background-color: inherit */
 }
 
 .submitBtn {
@@ -65,9 +65,9 @@
   margin-inline-start: 0.25rem;
   align-items: center;
   display: inline-flex;
-  background-color: #2da44e;
+  /* background-color: #2da44e; */
   border-color: rgba(27, 31, 36, .15);
-  color: #fff;
+  /* color: #fff; */
   vertical-align: middle;
   font-size: .875rem;
   line-height: 1.25rem;
@@ -90,7 +90,7 @@
   }
 
   .textarea {
-    background-color: #000;
+    /* background-color: #000; */
     border-color: #30363d;
   }
 
@@ -153,7 +153,7 @@
 
 .author>span {
   margin-inline-start: 0.5rem;
-  color: #57606a;
+  /* color: #57606a; */
 }
 
 .content {
@@ -181,7 +181,7 @@
 }
 
 .tlLine {
-  background-color: #d8dee4;
+  /* background-color: #d8dee4; */
   flex-shrink: 0;
   height: 100%;
   inset-inline-start: 30px;
@@ -239,10 +239,10 @@
   padding-bottom: 0.5rem;
   padding-inline-start: 1.5rem;
   padding-top: 0.5rem;
-  color: #57606a;
+  /* color: #57606a; */
 }
 
 .moreBtnInner {
   font-weight: 600;
-  color: #0969da;
+  /* color: #0969da; */
 }
