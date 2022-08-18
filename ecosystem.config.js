@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'mx-kami',
+      name: 'nx-theme-Single',
       script: 'npx next start -p 2323',
       instances: 1,
       autorestart: true,
