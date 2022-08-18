@@ -14,6 +14,16 @@
 
 <br />
 
+## Usage
+
+```bash
+pnpm i
+pnpm build
+pnpm prod:pm2
+```
+
+详细操作请前往 [Documentation 文档](https://nx.js.org)
+
 ## References
 
 - [Single](https://paugram.com/essay/single-theme-and-single-dog.html)，此项目的原主题 -- 奇趣保罗的 Typecho 主题
