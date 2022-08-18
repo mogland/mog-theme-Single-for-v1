@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:57:33
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:08:46
+ * @LastEditTime: 2022-08-18 22:32:55
  * Coding With IU
  */
 
@@ -29,11 +29,13 @@ const Links: NextPage<any> = (props) => {
 
   const [data, setData] = useState<any>()
 
+  const getData = async () => {
+    const res = await apiClient(`/page/slug/links`);
+    setData(res)
+  }
+
   useEffect(() => {
-    async () => {
-      const data = await apiClient(`/page/slug/links`);
-      data ? setData(data.data) : null;
-    }
+    getData();
   })
 
   return (
@@ -66,7 +68,9 @@ const Links: NextPage<any> = (props) => {
         </ul>
 
           {
-            data && <Markdown source={data.text} images={props.data.images} />
+            data && (
+              <Markdown source={data.text} images={data.images} />
+            )
           }
 
       </article>
