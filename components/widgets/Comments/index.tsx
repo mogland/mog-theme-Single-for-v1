@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:50:53
+ * @LastEditTime: 2022-08-18 18:07:20
  * Coding With IU
  */
 
@@ -31,6 +31,7 @@ interface IReply {
   text: String
   mail: String
   url: String
+  toName: string
   reply: 0 | 1
 }
 
@@ -43,6 +44,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
     "text": "",
     "mail": "",
     "url": "",
+    "toName": "",
     "reply": 0
   });
 
@@ -75,46 +77,41 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
           {
             children.length && children.map((item: any, index: Number) => {
               return (
-                <div className={clsx(styles.replyBox)}>
-                  <div className={clsx(styles.replyAuthorAvatar)}>
-                    <a href={item?.url} className={clsx(styles.authorAvatar)}>
-                      <img src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={30} height={30} />
-                    </a>
-                  </div>
-                  <div className={clsx(styles.headerBox)}>
-                    <div className={clsx(styles.replyHeader, styles.header)}>
-                      <div className={clsx(styles.author)}>
-                        <a rel="nofollow noopener noreferrer" target="_blank"
-                          href={item?.url} className="flex items-center">
-                          <span className="link-primary font-semibold">{item.author}</span>
-                        </a>
-                        <span className="link-secondary ml-2">
-                          <time className="whitespace-nowrap">
-                            {item.created.split('T')[0]}
-                          </time>
-                        </span>
-                      </div>
-                      <button className="flex" onClick={() => {
-                        setReply({
-                          ...reply,
-                          reply: 1,
-                          id: item.id
-                        })
-                        // 平滑移动到评论框
-                        const comment = document.querySelector(`#comment`)
-                        comment?.scrollIntoView({
-                          behavior: 'smooth'
-                        })
-                      }}>Reply</button>
-                    </div>
-                    <div className={clsx(styles.content, "prose dark:prose-invert")}>
-                      <Markdown
-                        source={item.text}
-                      />
-                    </div>
-                    <Children children={item.children} />
-                  </div>
+                <div className={clsx("comment-single comment-child")}>
+                <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
+                <div className={clsx("comment-meta")}>
+                  <span className="comment-author">
+                    <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
+                  </span>
+                  <time className="comment-time">
+                    {item.created.split("T")[0]}
+                  </time>
+                  <span className="comment-reply" onClick={() => {
+                    setReply({
+                      ...reply,
+                      reply: 1,
+                      id: item.id,
+                      toName: item.author
+                    })
+                    // 平滑移动到评论框
+                    const comment = document.querySelector(`#comment`)
+                    comment?.scrollIntoView({
+                      behavior: 'smooth'
+                    })
+                  }}>
+                    <i className="fa fa-reply" title="回复"></i>
+                  </span>
                 </div>
+
+                <div className="comment-content">
+                  <Markdown
+                    source={item.text}
+                  />
+                </div>
+
+                <Children children={item.children} />
+
+              </div>
               )
             })
           }
@@ -195,7 +192,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                 }}
               />
             </div>
-            <textarea id="" placeholder="Comment here" className={clsx(styles["textarea"])}
+            <textarea id="" placeholder={reply.toName ? `回复 ${reply.toName}` : "Comment here"} className={clsx(styles["textarea"])}
               name="text"
               value={reply.text as any}
               onChange={(e) => {
@@ -217,10 +214,9 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
 
               {
                 (reply.reply || reply.text) && (
-                  <button className={clsx(styles.submitInner)} type="button"
+                  <button className="btn mr-5" type="button"
                     style={{
-                      backgroundColor: "inherit",
-                      color: "inherit"
+                      backgroundColor: "#27a17e63",
                     }}
                     onClick={() => {
                       setReply({
@@ -228,6 +224,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                         reply: 0,
                         id,
                         text: "",
+                        toName: "",
                       })
                     }}
                   >
@@ -236,44 +233,43 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                 )
               }
 
-              <button type="submit" className={clsx(styles.submitInner)}>Submit{
+              <button type="submit" className="btn">Submit{
                 reply.reply ? " Reply" : ""
               } Comments</button>
             </div>
           </div>
         </form>
 
-        <div className={clsx(styles.timeline)}>
+        <div className={clsx("comment-list mt-12")}>
           {list && list.data.map((item: any, index: Number) => {
             return (
-              <div className={clsx(styles.comment)}>
-                <div className={clsx(styles.header)}>
-                  <div className={clsx(styles.author)}>
-                    <a href={item?.url} className={clsx(styles.authorAvatar)}>
-                      <img src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={30} height={30} />
-                      <span>{item.author}</span>
-                    </a>
-                    <span>
-                      <time>
-                        {item.created.split('T')[0]}
-                      </time>
-                    </span>
-                  </div>
-                  <button className="flex" onClick={() => {
+              <div className={clsx("comment-single")}>
+                <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
+                <div className={clsx("comment-meta")}>
+                  <span className="comment-author">
+                    <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
+                  </span>
+                  <time className="comment-time">
+                    {item.created.split("T")[0]}
+                  </time>
+                  <span className="comment-reply" onClick={() => {
                     setReply({
                       ...reply,
                       reply: 1,
-                      id: item.id
+                      id: item.id,
+                      toName: item.author
                     })
                     // 平滑移动到评论框
                     const comment = document.querySelector(`#comment`)
                     comment?.scrollIntoView({
                       behavior: 'smooth'
                     })
-                  }}>Reply</button>
+                  }}>
+                    <i className="fa fa-reply" title="回复"></i>
+                  </span>
                 </div>
 
-                <div className={clsx(styles.content, "prose dark:prose-invert")}>
+                <div className="comment-content">
                   <Markdown
                     source={item.text}
                   />
