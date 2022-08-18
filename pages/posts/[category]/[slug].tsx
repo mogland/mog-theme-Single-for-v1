@@ -36,6 +36,19 @@ const Post: NextPage<any> = (props) => {
     }
   }, [])
 
+  useEffect(() => {
+    const ele = document.createElement("a")
+    ele.classList.add("toggle-list")
+    ele.onclick = () => {
+      document.querySelector(".article-list")?.classList.toggle("active")
+    }
+    document.querySelector(".buttons")?.appendChild(ele)
+    return () => {
+      document.querySelector(".article-list")?.classList.toggle("active")
+      document.querySelector(".buttons")?.removeChild(ele)
+    }
+  })
+
 
   return (
     <>

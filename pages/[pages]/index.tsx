@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:52:01
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 13:03:44
+ * @LastEditTime: 2022-08-18 18:04:45
  * Coding With IU
  */
 import { GetServerSideProps, NextPage } from "next";
@@ -44,6 +44,19 @@ const Page: NextPage<any> = (props) => {
       document.body.classList.remove("has-trees");
     }
   }, [])
+
+  useEffect(() => {
+    const ele = document.createElement("a")
+    ele.classList.add("toggle-list")
+    ele.onclick = () => {
+      document.querySelector(".article-list")?.classList.toggle("active")
+    }
+    document.querySelector(".buttons")?.appendChild(ele)
+    return () => {
+      document.querySelector(".article-list")?.classList.toggle("active")
+      document.querySelector(".buttons")?.removeChild(ele)
+    }
+  })
 
 
   return (
