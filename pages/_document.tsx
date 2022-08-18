@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-07 21:00:31
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 21:36:44
+ * @LastEditTime: 2022-08-18 12:56:00
  * Coding With IU
  */
 
@@ -24,7 +24,6 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" href="/apple-icon-180.png" />
           <link rel="manifest" href="/manifest.json" />
           <meta name="theme-color" content="#ffffff" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="apple-touch-startup-image" href="/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
