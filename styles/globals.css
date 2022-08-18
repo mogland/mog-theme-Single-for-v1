@@ -920,3 +920,5 @@ footer .sub-footer p{ font-size: .875em }
         margin-bottom: 0;
     }
 }
+
+body:before{content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gt)}
