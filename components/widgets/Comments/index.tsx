@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 18:07:20
+ * @LastEditTime: 2022-08-18 18:41:45
  * Coding With IU
  */
 
@@ -77,41 +77,44 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
           {
             children.length && children.map((item: any, index: Number) => {
               return (
-                <div className={clsx("comment-single comment-child")}>
-                <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
-                <div className={clsx("comment-meta")}>
-                  <span className="comment-author">
-                    <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
-                  </span>
-                  <time className="comment-time">
-                    {item.created.split("T")[0]}
-                  </time>
-                  <span className="comment-reply" onClick={() => {
-                    setReply({
-                      ...reply,
-                      reply: 1,
-                      id: item.id,
-                      toName: item.author
-                    })
-                    // 平滑移动到评论框
-                    const comment = document.querySelector(`#comment`)
-                    comment?.scrollIntoView({
-                      behavior: 'smooth'
-                    })
-                  }}>
-                    <i className="fa fa-reply" title="回复"></i>
-                  </span>
-                </div>
+                <>
+                  <div className={clsx("comment-single comment-child")}>
+                    <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
+                    <div className={clsx("comment-meta")}>
+                      <span className="comment-author">
+                        <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
+                      </span>
+                      <time className="comment-time">
+                        {item.created.split("T")[0]}
+                      </time>
+                      <span className="comment-reply" onClick={() => {
+                        setReply({
+                          ...reply,
+                          reply: 1,
+                          id: item.id,
+                          toName: item.author
+                        })
+                        // 平滑移动到评论框
+                        const comment = document.querySelector(`#comment`)
+                        comment?.scrollIntoView({
+                          behavior: 'smooth'
+                        })
+                      }}>
+                        <i className="fa fa-reply" title="回复"></i>
+                      </span>
+                    </div>
 
-                <div className="comment-content">
-                  <Markdown
-                    source={item.text}
-                  />
-                </div>
+                    <div className="comment-content">
+                      <Markdown
+                        source={item.text}
+                      />
+                    </div>
 
-                <Children children={item.children} />
 
-              </div>
+
+                  </div>
+                  <Children children={item.children} />
+                </>
               )
             })
           }
@@ -121,7 +124,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
   }
 
   return (
-    <div className="pt-6 pb-6 text-center  ml-0">
+    <div className="pt-6 pb-6 text-center w-full ml-0">
       <div className={clsx(styles["comments"])}>
         <div className="items-center flex flex-auto">
           <div className="flex-wrap whitespace-nowrap items-center flex flex-auto">
@@ -129,7 +132,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
           </div>
         </div>
 
-        <form action="post" className={clsx(styles['form'])} onSubmit={async (e) => {
+        <form action="post" className={clsx(styles['form'], "w-full")} onSubmit={async (e) => {
           e.preventDefault()
           localStorage.setItem("guest-message", JSON.stringify({
             "author": reply.author,
@@ -151,7 +154,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
             message.error(`${reply.reply ? "回复" : "评论"} 失败`)
           })
         }}>
-          <div className={clsx(styles["boxMain"], "flex")}>
+          <div className={clsx(styles["boxMain"], "md:flex w-full")}>
             <div className="p-3 pb-6">
               <label className="block mb-2 mr-5  font-semibold">
                 你的名字
@@ -165,7 +168,7 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <label className="block mb-2 mr-5  font-semibold">
+              <label className="block mb-2 mr-5 w-full  font-semibold">
                 你的邮箱
               </label>
               <input type="text" style={{ backgroundColor: "inherit" }} placeholder="Mail" className="focus:outline-none mr-5 mb-2 "
@@ -243,41 +246,41 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
         <div className={clsx("comment-list mt-12")}>
           {list && list.data.map((item: any, index: Number) => {
             return (
-              <div className={clsx("comment-single")}>
-                <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
-                <div className={clsx("comment-meta")}>
-                  <span className="comment-author">
-                    <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
-                  </span>
-                  <time className="comment-time">
-                    {item.created.split("T")[0]}
-                  </time>
-                  <span className="comment-reply" onClick={() => {
-                    setReply({
-                      ...reply,
-                      reply: 1,
-                      id: item.id,
-                      toName: item.author
-                    })
-                    // 平滑移动到评论框
-                    const comment = document.querySelector(`#comment`)
-                    comment?.scrollIntoView({
-                      behavior: 'smooth'
-                    })
-                  }}>
-                    <i className="fa fa-reply" title="回复"></i>
-                  </span>
-                </div>
+              <>
+                <div className={clsx("comment-single")}>
+                  <img className="avatar" src={item.mail ? mailAvatar(item.mail) : "https://cravatar.cn/avatar/"} alt={item.author} width={150} height={150} />
+                  <div className={clsx("comment-meta")}>
+                    <span className="comment-author">
+                      <a href={item?.url} rel="external nofollow" target={"_blank"}>{item.author}</a>
+                    </span>
+                    <time className="comment-time">
+                      {item.created.split("T")[0]}
+                    </time>
+                    <span className="comment-reply" onClick={() => {
+                      setReply({
+                        ...reply,
+                        reply: 1,
+                        id: item.id,
+                        toName: item.author
+                      })
+                      // 平滑移动到评论框
+                      const comment = document.querySelector(`#comment`)
+                      comment?.scrollIntoView({
+                        behavior: 'smooth'
+                      })
+                    }}>
+                      <i className="fa fa-reply" title="回复"></i>
+                    </span>
+                  </div>
 
-                <div className="comment-content">
-                  <Markdown
-                    source={item.text}
-                  />
+                  <div className="comment-content">
+                    <Markdown
+                      source={item.text}
+                    />
+                  </div>
                 </div>
-
                 <Children children={item.children} />
-
-              </div>
+              </>
             )
           })}
           {

@@ -105,9 +105,11 @@ App.getInitialProps = async (props: AppContext) => {
   async function getHeadinitialData() {
     const aggregatedData = await apiClient("/aggregate")
     const aggregatedTop = await apiClient("/aggregate/top")
+    const resentlyComments = await apiClient("/comments")
     const res = {
       aggregatedData,
       aggregatedTop,
+      resentlyComments,
     }
     return res
   }

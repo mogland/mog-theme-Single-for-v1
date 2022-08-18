@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 14:51:52
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-17 21:33:22
+ * @LastEditTime: 2022-08-18 18:40:05
  * Coding With IU
  */
 
@@ -51,7 +51,7 @@ export const Footer: FC = () => {
                 <h3 className="title-comments">最近评论：</h3>
                 <ul>
                   {
-                    aggregateSnapshot.aggregatedTop.comments?.length && aggregateSnapshot.aggregatedTop.comments?.map((item: any) => {
+                    aggregateSnapshot.resentlyComments.data?.length && aggregateSnapshot.resentlyComments.data.map((item: any) => {
                       return (
                         <li key={item.id}>
                           <Link href={`/posts/${item.slug}`}>
