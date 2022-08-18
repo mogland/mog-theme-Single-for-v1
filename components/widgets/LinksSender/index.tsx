@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/widgets/LinksSender/index.tsx
+ * @FilePath: /nx-theme-Single/components/widgets/LinksSender/index.tsx
  * @author: Wibus
  * @Date: 2022-08-09 12:52:53
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-09 13:11:29
+ * @LastEditTime: 2022-08-18 15:11:49
  * Coding With IU
  */
 /*
@@ -23,7 +23,7 @@ import { useMount } from "react-use";
 import { message } from "react-message-popup";
 import { isClientSide } from "../../../utils/ssr.util";
 
-export const LinksSender: FC<any> = ({ type, path, id }) => {
+export const LinksSender: FC<any> = () => {
 
   const [link, setLink] = useState<any>({
     types: "Friend",
@@ -90,7 +90,7 @@ export const LinksSender: FC<any> = ({ type, path, id }) => {
                   })
                 }}
               />
-              <label className="mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="ml-5 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
                 您的邮箱
               </label>
               <input type="text" style={{backgroundColor: "inherit"}} placeholder="Mail" className="focus:outline-none"
@@ -104,7 +104,7 @@ export const LinksSender: FC<any> = ({ type, path, id }) => {
                 }}
               />
               {/* 站点图标 */}
-              <label className="mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="ml-5 mr-5 text-gray-700 dark:text-gray-300 font-semibold">
                 站点图标
               </label>
               <input type="text" style={{backgroundColor: "inherit"}} placeholder="avatar" className="focus:outline-none"
@@ -122,10 +122,10 @@ export const LinksSender: FC<any> = ({ type, path, id }) => {
 
             </div>
             <div className="p-3 pb-4">
-              <label className="block text-gray-700 dark:text-gray-300 font-semibold">
+              <label className=" mr-5 text-gray-700 dark:text-gray-300 font-semibold">
                 站点名称
               </label>
-              <input type="text" style={{backgroundColor: "inherit", width: "400px"}} placeholder="Name" className="focus:outline-none"
+              <input type="text" style={{backgroundColor: "inherit"}} placeholder="Name" className="focus:outline-none"
                 name="name"
                 value={link.name as any}
                 onChange={(e) => {
@@ -137,10 +137,10 @@ export const LinksSender: FC<any> = ({ type, path, id }) => {
                 }
               />
 
-              <label className="mr-5 text-gray-700 dark:text-gray-300 font-semibold">
+              <label className="mr-5 ml-5 text-gray-700 dark:text-gray-300 font-semibold">
                 站点地址
               </label>
-              <input type="text" style={{backgroundColor: "inherit", width: "400px"}} placeholder="Url (optional)" className="focus:outline-none"
+              <input type="text" style={{backgroundColor: "inherit"}} placeholder="Url (optional)" className="focus:outline-none"
                 name="url"
                 value={link.url as any}
                 onChange={(e) => {
@@ -169,10 +169,10 @@ export const LinksSender: FC<any> = ({ type, path, id }) => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 dark:text-gray-300 font-semibold">
+                <label className=" text-gray-700 dark:text-gray-300 font-semibold mr-5">
                   RSS 订阅类型 (填写 atom 或 rss)
                 </label>
-                <input type="text" style={{backgroundColor: "inherit", width: "400px"}} placeholder="Rss Type (optional)" className="focus:outline-none"
+                <input type="text" style={{backgroundColor: "inherit"}} placeholder="Rss Type (optional)" className="focus:outline-none"
                   name="rssType"
                   value={link.rssType as any}
                   onChange={(e) => {
