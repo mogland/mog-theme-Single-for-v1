@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-18 15:29:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:35:40
+ * @LastEditTime: 2022-08-18 15:41:06
  * Coding With IU
  */
 
@@ -58,7 +58,7 @@ const Category: NextPage<any> = (props) => {
                 </span>
                 <span className="comments">
                   <Link href={`/posts/${item.category.slug}/${item.slug}`}>
-                    <span>{item.comments_index} °C</span>
+                    <span>{String(item.comments_index)} °C</span>
                   </Link>
                 </span>
               </div>

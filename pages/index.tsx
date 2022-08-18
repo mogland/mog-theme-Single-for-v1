@@ -64,7 +64,7 @@ const Home: NextPage<any> = (props) => {
                   </span>
                   <span className="comments">
                     <Link href={`/posts/${item.category.slug}/${item.slug}`}>
-                      <span>{item.comments_index} °C</span>
+                      <span></span>
                     </Link>
                   </span>
                 </div>
