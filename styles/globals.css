@@ -745,7 +745,10 @@ article h1:before{ font-weight: bold }
 .article-list .item-6:before{ content: "-----" }
 
 @media screen and (min-width: 800px){
-    body.has-trees{ margin-right: 15em }
+    body.has-trees{
+        margin-right: 15em;
+        padding: 0;
+    }
 
     .dark-theme .article-list{ background: rgba(0, 0, 0, .1) }
 
