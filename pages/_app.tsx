@@ -67,26 +67,7 @@ function App({ initialData, Component, pageProps }) {
   appState.aggregate = initialData
 
   // 如果按下了 F1，则 setCommanderOpen(true)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.keyCode === 112) {
-        document.querySelector(".commander")?.classList.toggle("hidden")
-      }
-      // 如果按下 command + J
-      if (e.keyCode === 74 && e.metaKey) {
-        document.querySelector(".commander")?.classList.toggle("hidden")
-      }
-      // 如果按下 esc，且  document.querySelector(".commander")?.classList.contains("hidden") === true
-      if (e.keyCode === 27) {
-        document.querySelector(".commander")?.classList.add("hidden")
-        document.querySelector(".commander")?.classList.remove("block")
-      }
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [])
+
 
 
   console.timeEnd('loading')
@@ -98,7 +79,7 @@ function App({ initialData, Component, pageProps }) {
           <Component {...pageProps} />
         </div>
       </main>
-      <div className={"commander"}>
+      <div className={"commander hidden"}>
         <Commander />
       </div>
       <Footer />
