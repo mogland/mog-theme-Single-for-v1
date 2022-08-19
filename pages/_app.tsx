@@ -1,5 +1,6 @@
 import '../styles/kico.css'
 import '../styles/globals.css'
+import '../styles/cmdk.scss'
 import type { AppContext } from 'next/app'
 import { Router } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
