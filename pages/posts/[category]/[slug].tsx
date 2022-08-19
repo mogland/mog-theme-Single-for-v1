@@ -1,7 +1,8 @@
+import { Loading } from "@icon-park/react";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSnapshot } from "valtio";
 import appState from "../../../states/appState";
 import { apiClient } from "../../../utils/request.util";
@@ -12,7 +13,9 @@ const Comments = dynamic(() => import("../../../components/widgets/Comments"), {
 
 const SEO = dynamic(() => import("../../../components/others/SEO"))
 
-const Markdown = dynamic(() => import("../../../components/Markdown"));
+const Markdown = dynamic(() => import("../../../components/Markdown"), {
+  suspense: true,
+});
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/posts/${ctx.query.category}/${ctx.query.slug}`)
@@ -91,7 +94,9 @@ const Post: NextPage<any> = (props) => {
         </div>
       </section>
       <article className="post-content">
-        <Markdown source={props.data.text} images={props.data.images} />
+        <Suspense fallback={<div><Loading /> Loading...</div>}>
+          <Markdown source={props.data.text} images={props.data.images} />
+        </Suspense>
       </article>
       {/* <section className="post-near"></section> */}
       <section className="post-author">

@@ -3,13 +3,14 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:57:33
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 23:34:47
+ * @LastEditTime: 2022-08-19 23:44:06
  * Coding With IU
  */
 
+import { Loading } from "@icon-park/react";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { apiClient } from "../../utils/request.util";
 
 const LinksSender = dynamic(() => import("../../components/widgets/LinksSender"), {
@@ -18,7 +19,9 @@ const LinksSender = dynamic(() => import("../../components/widgets/LinksSender")
 
 const SEO = dynamic(() => import("../../components/others/SEO"))
 
-const Markdown = dynamic(() => import("../../components/Markdown"));
+const Markdown = dynamic(() => import("../../components/Markdown"), {
+  suspense: true,
+});
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const link = await apiClient("/links/all").then((res) => res.data);
@@ -72,11 +75,13 @@ const Links: NextPage<any> = (props) => {
           }
         </ul>
 
-          {
-            data && (
-              <Markdown source={data.text} images={data.images} />
-            )
-          }
+        {
+          data && (
+            <Suspense fallback={<div><Loading /> Loading...</div>}>
+              <Markdown source={props.data.text} images={props.data.images} />
+            </Suspense>
+          )
+        }
 
       </article>
 

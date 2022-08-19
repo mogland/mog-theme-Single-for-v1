@@ -3,13 +3,14 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:52:01
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 23:35:46
+ * @LastEditTime: 2022-08-19 23:44:21
  * Coding With IU
  */
+import { Loading } from "@icon-park/react";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSnapshot } from "valtio";
 import appState from "../../states/appState";
 import { apiClient } from "../../utils/request.util";
@@ -20,7 +21,9 @@ const Comments = dynamic(() => import("../../components/widgets/Comments"), {
 
 const SEO = dynamic(() => import("../../components/others/SEO"))
 
-const Markdown = dynamic(() => import("../../components/Markdown"));
+const Markdown = dynamic(() => import("../../components/Markdown"), {
+  suspense: true,
+});
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/page/slug/${ctx.query?.pages}`);
@@ -79,7 +82,9 @@ const Page: NextPage<any> = (props) => {
         <h2>{props.data.title}</h2>
       </section>
       <article className="post-content">
-        <Markdown source={props.data.text} images={props.data.images} />
+      <Suspense fallback={<div><Loading /> Loading...</div>}>
+          <Markdown source={props.data.text} images={props.data.images} />
+        </Suspense>
       </article>
       {/* <section className="post-near"></section> */}
       <section className="post-author">
