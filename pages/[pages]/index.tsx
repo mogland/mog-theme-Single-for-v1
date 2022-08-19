@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:52:01
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 23:18:52
+ * @LastEditTime: 2022-08-19 23:35:46
  * Coding With IU
  */
 import { GetServerSideProps, NextPage } from "next";
@@ -11,7 +11,6 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import Markdown from "../../components/Markdown";
 import appState from "../../states/appState";
 import { apiClient } from "../../utils/request.util";
 
@@ -20,6 +19,8 @@ const Comments = dynamic(() => import("../../components/widgets/Comments"), {
 });
 
 const SEO = dynamic(() => import("../../components/others/SEO"))
+
+const Markdown = dynamic(() => import("../../components/Markdown"));
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/page/slug/${ctx.query?.pages}`);

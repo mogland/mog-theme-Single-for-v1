@@ -8,9 +8,11 @@
  */
 
 import { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { SEO } from "../../components/others/SEO";
 import { apiClient } from "../../utils/request.util";
+
+const SEO = dynamic(() => import("../../components/others/SEO"))
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { slug } = ctx.query;

@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import Markdown from "../../../components/Markdown";
 import appState from "../../../states/appState";
 import { apiClient } from "../../../utils/request.util";
 
@@ -12,6 +11,8 @@ const Comments = dynamic(() => import("../../../components/widgets/Comments"), {
 });
 
 const SEO = dynamic(() => import("../../../components/others/SEO"))
+
+const Markdown = dynamic(() => import("../../../components/Markdown"));
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/posts/${ctx.query.category}/${ctx.query.slug}`)

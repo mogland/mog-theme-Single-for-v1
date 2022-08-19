@@ -3,14 +3,16 @@
  * @author: Wibus
  * @Date: 2022-08-16 20:57:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:42:42
+ * @LastEditTime: 2022-08-19 23:37:25
  * Coding With IU
  */
 
 import { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { SEO } from "../../components/others/SEO";
 import { apiClient } from "../../utils/request.util";
+
+const SEO = dynamic(() => import("../../components/others/SEO"))
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient("/posts", {

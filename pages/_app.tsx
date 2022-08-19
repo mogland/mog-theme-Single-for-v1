@@ -10,6 +10,8 @@ import { apiClient } from '../utils/request.util'
 import appState from '../states/appState'
 import NextApp from 'next/app'
 import AppLayout from '../components/layouts/AppLayout'
+import dynamic from 'next/dynamic'
+
 function App({ initialData, Component, pageProps }) {
   const Progress = new QP({ colorful: false, color: '#27ae60' })
   const registerRouterEvents = useCallback(() => {
