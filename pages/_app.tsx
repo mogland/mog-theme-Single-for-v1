@@ -9,11 +9,10 @@ import QP from 'qier-progress'
 import { apiClient } from '../utils/request.util'
 import appState from '../states/appState'
 import NextApp from 'next/app'
-import { Header } from '../components/layouts/Header'
-import { Footer } from '../components/layouts/Footer'
-import { Commander } from '../components/widgets/Commander'
+import AppLayout from '../components/layouts/AppLayout'
+import dynamic from 'next/dynamic'
+
 function App({ initialData, Component, pageProps }) {
-  console.time('loading')
   const Progress = new QP({ colorful: false, color: '#27ae60' })
   const registerRouterEvents = useCallback(() => {
     Router.events.on('routeChangeStart', () => {
@@ -65,25 +64,10 @@ function App({ initialData, Component, pageProps }) {
   }, [])
 
   appState.aggregate = initialData
-
-  // 如果按下了 F1，则 setCommanderOpen(true)
-
-
-
-  console.timeEnd('loading')
   return (
-    <>
-      <Header />
-      <main>
-        <div className="wrap min">
-          <Component {...pageProps} />
-        </div>
-      </main>
-      <div className={"commander hidden"}>
-        <Commander />
-      </div>
-      <Footer />
-    </>
+    <AppLayout>
+      <Component {...pageProps} />
+    </AppLayout>
   )
 }
 

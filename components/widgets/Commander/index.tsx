@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 22:10:18
+ * @LastEditTime: 2022-08-19 22:55:18
  * Coding With IU
  */
 
@@ -143,3 +143,5 @@ export const Commander: FC = () => {
     </div>
   )
 }
+
+export default Commander;

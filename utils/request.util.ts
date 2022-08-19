@@ -25,3 +25,5 @@ export const apiClient = $fetch.create({
     "User-Agent": `${appState.request.userAgent} NextJS/v${Package.dependencies.next} NEXT-Theme-Tiny/${Package.version}` || '',
   },
 })
+
+export default apiClient
