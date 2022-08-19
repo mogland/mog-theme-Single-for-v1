@@ -5,6 +5,14 @@
 
 <img src="https://img.shields.io/github/package-json/v/nx-space/nx-theme-Single" referrerpolicy="no-referrer" alt="version"> <a href="https://wakatime.com/badge/user/5c293fcd-9bec-4609-946b-c06b5fbf192c/project/3cf5737d-d2b8-42e0-8cbf-134431f61882"><img src="https://wakatime.com/badge/user/5c293fcd-9bec-4609-946b-c06b5fbf192c/project/3cf5737d-d2b8-42e0-8cbf-134431f61882.svg" alt="wakatime"></a>
 
+## Features
+
+- [X] ⌨️ `Command` + `K` 打开工具箱 (Windows use `ctrl` + `K`, if bug, won't be fixed)
+  - [X] Toggle Site Theme (light / dark)
+  - [ ] Resently Updated
+  - [ ] Posts Search
+  - [ ] Friendly, Customly Keybindings
+
 ## Preview
 
 <br />
