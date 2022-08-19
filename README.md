@@ -9,7 +9,7 @@
 
 - [X] ⌨️ `Command` + `K` 打开工具箱 (Windows use `ctrl` + `K`, if bug, won't be fixed)
   - [X] Toggle Site Theme (light / dark)
-  - [ ] Resently Updated
+  - [X] Resently Updated
   - [ ] Posts Search
   - [ ] Friendly, Customly Keybindings
 

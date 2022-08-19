@@ -3,13 +3,11 @@
  * @author: Wibus
  * @Date: 2022-08-07 21:00:31
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 12:56:00
+ * @LastEditTime: 2022-08-19 21:57:02
  * Coding With IU
  */
 
 import Document, { Head, Html, Main, NextScript } from "next/document";
-import { isClientSide } from "../utils/ssr.util";
-
 
 export default class MyDocument extends Document {
   render() {
