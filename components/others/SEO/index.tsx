@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/others/SEO/index.tsx
+ * @FilePath: /nx-theme-Single/components/others/SEO/index.tsx
  * @author: Wibus
  * @Date: 2022-08-09 14:27:23
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-09 14:40:24
+ * @LastEditTime: 2022-08-19 23:18:40
  * Coding With IU
  */
 import merge from 'lodash-es/merge'
@@ -82,3 +82,5 @@ export const SEO: FC<SEOProps> = observer((props) => {
 })
 
 export const Seo = SEO
+
+export default SEO

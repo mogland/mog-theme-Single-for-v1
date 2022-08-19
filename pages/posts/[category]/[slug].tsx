@@ -1,14 +1,17 @@
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import Markdown from "../../../components/Markdown";
-import { Seo } from "../../../components/others/SEO";
-import { Comments } from "../../../components/widgets/Comments";
 import appState from "../../../states/appState";
 import { apiClient } from "../../../utils/request.util";
-import { isClientSide } from "../../../utils/ssr.util";
+
+const Comments = dynamic(() => import("../../../components/widgets/Comments"), {
+  ssr: false,
+});
+
+const SEO = dynamic(() => import("../../../components/others/SEO"))
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/posts/${ctx.query.category}/${ctx.query.slug}`)
@@ -52,7 +55,7 @@ const Post: NextPage<any> = (props) => {
 
   return (
     <>
-      <Seo
+      <SEO
         title={props.data.title}
         description={
           props.data.summary || props.data.text.substring(0, 200)

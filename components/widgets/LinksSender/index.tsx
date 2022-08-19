@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-09 12:52:53
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 15:11:49
+ * @LastEditTime: 2022-08-19 23:14:52
  * Coding With IU
  */
 /*
@@ -239,3 +239,5 @@ export const LinksSender: FC<any> = () => {
     </div>
   )
 }
+
+export default LinksSender

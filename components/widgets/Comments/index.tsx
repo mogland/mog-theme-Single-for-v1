@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 18:14:29
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 18:41:45
+ * @LastEditTime: 2022-08-19 23:08:36
  * Coding With IU
  */
 
@@ -311,3 +311,5 @@ export const Comments: FC<ICommentsFC> = ({ type, path, id }) => {
     </div>
   )
 }
+
+export default Comments

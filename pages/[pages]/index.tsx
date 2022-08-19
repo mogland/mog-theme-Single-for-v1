@@ -3,21 +3,23 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:52:01
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-18 18:04:45
+ * @LastEditTime: 2022-08-19 23:18:52
  * Coding With IU
  */
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import Markdown from "../../components/Markdown";
-import { Seo } from "../../components/others/SEO";
-import { Comments } from "../../components/widgets/Comments";
 import appState from "../../states/appState";
 import { apiClient } from "../../utils/request.util";
-import { isClientSide } from "../../utils/ssr.util";
+
+const Comments = dynamic(() => import("../../components/widgets/Comments"), {
+  ssr: false,
+});
+
+const SEO = dynamic(() => import("../../components/others/SEO"))
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/page/slug/${ctx.query?.pages}`);
@@ -61,7 +63,7 @@ const Page: NextPage<any> = (props) => {
 
   return (
     <>
-      <Seo
+      <SEO
         title={props.data.title}
         openGraph={{ type: 'article' }}
         description={
