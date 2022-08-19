@@ -7,6 +7,7 @@
   --lowContrast: #ffffff;
   --highContrast: #000000;
 
+  --gray: #f5f5f5;
   --gray1: hsl(0, 0%, 99%);
   --gray2: hsl(0, 0%, 97.3%);
   --gray3: hsl(0, 0%, 95.1%);
@@ -93,27 +94,14 @@
   --blue12: hsl(206, 98%, 95.8%);
 }
 
-.raycast {
+[cmdk-dialog] {
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
-
-
-  ::selection {
-    background: hotpink;
-    color: white;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: hotpink;
-  }
-
-  ::-webkit-scrollbar {
-    background-color: transparent;
-    width: 0px;
-    height: 0px;
-  }
+  position: fixed;
+  top: 10%;
+  width: 100%;
 
   [cmdk-root] {
     max-width: 640px;
@@ -124,8 +112,7 @@
     font-family: var(--font-sans);
     box-shadow: var(--cmdk-shadow);
     border: 1px solid var(--gray6);
-    position: fixed;
-    top: 10%;
+    position: relative;
 
     .dark & {
       background: var(--gray2);
@@ -516,6 +503,7 @@
     overscroll-behavior: contain;
     transition: 100ms ease;
     transition-property: height;
+    height: var(--cmdk-list-height);
   }
 
   [cmdk-item] {

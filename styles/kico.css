@@ -72,7 +72,7 @@ html.font-l{ font-size: 18px }
 }
 
 /* - 滚动条 */
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
     width: 10px;
     height: 10px;
 }
@@ -85,7 +85,7 @@ html.font-l{ font-size: 18px }
 ::-webkit-scrollbar-track{ border-radius: 5px }
 ::-webkit-scrollbar-track:hover{ background: rgba(0, 0, 0, .05) }
 
-body::-webkit-scrollbar-track{ border-radius: 0 }
+body::-webkit-scrollbar-track{ border-radius: 0 } */
 
 /* - 辅助类 */
 .float-none{ float: none !important }

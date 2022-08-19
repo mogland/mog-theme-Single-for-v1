@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 14:04:25
+ * @LastEditTime: 2022-08-19 15:56:28
  * Coding With IU
  */
 
@@ -22,9 +22,35 @@ export const Commander: FC = () => {
   useEffect(() => {
     inputRef?.current?.focus()
   }, [])
+
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.keyCode === 112) {
+        // document.querySelector(".commander")?.classList.toggle("hidden")
+        setOpen((open) => !open)
+      }
+      // 如果按下 command + J
+      if (e.keyCode === 74 && e.metaKey) {
+        // document.querySelector(".commander")?.classList.toggle("hidden")
+        setOpen((open) => !open)
+      }
+      // 如果按下 esc，且  document.querySelector(".commander")?.classList.contains("hidden") === true
+      if (e.keyCode === 27) {
+        // document.querySelector(".commander")?.classList.add("hidden")
+        // document.querySelector(".commander")?.classList.remove("block")
+        setOpen((open) => !open)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
   return (
     <div className="raycast">
-      <Command value={value} onValueChange={(v) => setValue(v)}>
+      <Command.Dialog open={open} onOpenChange={setOpen} value={value} onValueChange={(v) => setValue(v)}>
         <div cmdk-raycast-top-shine="" />
         <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." />
         <hr cmdk-raycast-loader="" />
@@ -97,7 +123,7 @@ export const Commander: FC = () => {
 
           <SubCommand listRef={listRef} selectedValue={value} inputRef={inputRef} />
         </div>
-      </Command>
+      </Command.Dialog>
     </div>
   )
 }
