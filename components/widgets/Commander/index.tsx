@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 21:59:14
+ * @LastEditTime: 2022-08-19 22:10:18
  * Coding With IU
  */
 
@@ -69,16 +69,16 @@ export const Commander: FC = () => {
       <Command.Dialog open={open} onOpenChange={setOpen} value={value} onValueChange={(v) => {
         valueChangeHandle(v)
       }}
-      onKeyDownCapture={(e) => {
-        if (e.keyCode === 13) {
-          if (value === CommanderItemType.THEME){
-            document.body.classList.toggle('dark-theme');
+        onKeyDownCapture={(e) => {
+          if (e.keyCode === 13) {
+            if (value === CommanderItemType.THEME) {
+              document.body.classList.toggle('dark-theme');
+            }
+            if (value.includes(CommanderItemType.POSTS)) {
+              Router.push(value)
+            }
           }
-          if (value.includes(CommanderItemType.POSTS)){
-            Router.push(value)
-          }
-        }
-      }}
+        }}
       >
         <div cmdk-raycast-top-shine="" />
         <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." />
@@ -95,7 +95,13 @@ export const Commander: FC = () => {
                   width: 15,
                 }}
               />
+              <span className="w-full"
+                onClick={() => {
+                  document.body.classList.toggle('dark-theme');
+                }}
+              >
               Toggle Website Appearence
+              </span>
             </Command.Item>
 
           </Command.Group>
@@ -103,9 +109,18 @@ export const Commander: FC = () => {
           <Command.Group heading="Resently Posts">
             {
               appStateSnapshot.aggregate.aggregatedTop?.posts?.map((item: any, index: number) => {
-                return <Command.Item value={`${CommanderItemType.POSTS}/${item.category.slug}/${item.slug}`} key={item.id} id={item.id}>
-                  {item.title}
-                </Command.Item>
+                return (
+                  <Command.Item
+                    value={`${CommanderItemType.POSTS}/${item.category.slug}/${item.slug}`}
+                    key={item.id}
+                    id={item.id}
+                    
+                  >
+                    <span className="w-full" onClick={() => {
+                      Router.push(`${CommanderItemType.POSTS}/${item.category.slug}/${item.slug}`)
+                    }}>{item.title}</span>
+                  </Command.Item>
+                )
               })
             }
 
