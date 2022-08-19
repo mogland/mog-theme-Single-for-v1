@@ -48,7 +48,7 @@
   --blue12: hsl(211, 100%, 15%);
 }
 
-.dark {
+body.dark-theme {
   --app-bg: var(--gray1);
 
   --lowContrast: #000000;
@@ -102,6 +102,7 @@
   position: fixed;
   top: 10%;
   width: 100%;
+  font-weight: 400;
 
   [cmdk-root] {
     max-width: 640px;
@@ -251,6 +252,7 @@
     will-change: background, color;
     transition: all 150ms ease;
     transition-property: none;
+    justify-content: flex-start;
 
     &[aria-selected='true'] {
       background: var(--gray4);
@@ -296,6 +298,7 @@
     transition: 100ms ease;
     transition-property: height;
     padding-bottom: 40px;
+    height: calc(var(--cmdk-list-height) + 50px);
   }
 
   [cmdk-raycast-open-trigger],

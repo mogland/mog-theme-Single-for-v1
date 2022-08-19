@@ -3,19 +3,26 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 15:56:28
+ * @LastEditTime: 2022-08-19 21:41:10
  * Coding With IU
  */
 
 import { FC, useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { Item } from "./Item";
-import { Logo, LinearIcon, FigmaIcon, SlackIcon, YouTubeIcon, RaycastIcon, ClipboardIcon, HammerIcon, RaycastDarkIcon, RaycastLightIcon } from "./icon";
+import { RaycastLightIcon } from "./icon";
 import { SubCommand } from "./Sub";
+import { DarkMode } from "@icon-park/react";
+import { useSnapshot } from "valtio";
+import appState from "../../../states/appState";
+import Link from "next/link";
+import { CommanderItemType } from "./type";
+import Router from "next/router";
+import { message } from "react-message-popup";
 
 export const Commander: FC = () => {
   // const { resolvedTheme: theme } = useTheme()
-  const [value, setValue] = useState('linear')
+  const [value, setValue] = useState('toggle website appearence')
   const inputRef = useRef<HTMLInputElement | null>(null)
   const listRef = useRef(null)
 
@@ -28,19 +35,24 @@ export const Commander: FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 112) {
-        // document.querySelector(".commander")?.classList.toggle("hidden")
         setOpen((open) => !open)
       }
       // 如果按下 command + J
-      if (e.keyCode === 74 && e.metaKey) {
-        // document.querySelector(".commander")?.classList.toggle("hidden")
+      if (e.keyCode === 75 && e.metaKey || e.keyCode === 75 && e.ctrlKey) {
         setOpen((open) => !open)
       }
-      // 如果按下 esc，且  document.querySelector(".commander")?.classList.contains("hidden") === true
       if (e.keyCode === 27) {
-        // document.querySelector(".commander")?.classList.add("hidden")
-        // document.querySelector(".commander")?.classList.remove("block")
-        setOpen((open) => !open)
+        setOpen(false)
+      }
+      // // 按下 enter 键，执行命令
+      if (e.keyCode === 13) {
+        // message.info(`执行命令：${value}`)
+        if (value === CommanderItemType.THEME){
+          document.body.classList.toggle('dark-theme');
+        }
+        if (value.includes(CommanderItemType.POSTS)){
+          Router.push(value)
+        }
       }
     }
     document.addEventListener('keydown', handleKeyDown)
@@ -48,80 +60,62 @@ export const Commander: FC = () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
+
+  const appStateSnapshot = useSnapshot(appState) as any
+
+  const valueChangeHandle = (v) => {
+    setValue(v)
+    console.log(value)
+  }
+
   return (
     <div className="raycast">
-      <Command.Dialog open={open} onOpenChange={setOpen} value={value} onValueChange={(v) => setValue(v)}>
+      <Command.Dialog open={open} onOpenChange={setOpen} value={value} onValueChange={(v) => {
+        valueChangeHandle(v)
+      }}>
         <div cmdk-raycast-top-shine="" />
         <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." />
         <hr cmdk-raycast-loader="" />
         <Command.List ref={listRef}>
           <Command.Empty>No results found.</Command.Empty>
-          <Command.Group heading="Suggestions">
-            <Item value="Linear">
-              <Logo>
-                <LinearIcon
-                  style={{
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-              </Logo>
-              Linear
-            </Item>
-            <Item value="Figma">
-              <Logo>
-                <FigmaIcon />
-              </Logo>
-              Figma
-            </Item>
-            <Item value="Slack">
-              <Logo>
-                <SlackIcon />
-              </Logo>
-              Slack
-            </Item>
-            <Item value="YouTube">
-              <Logo>
-                <YouTubeIcon />
-              </Logo>
-              YouTube
-            </Item>
-            <Item value="Raycast">
-              <Logo>
-                <RaycastIcon />
-              </Logo>
-              Raycast
-            </Item>
-          </Command.Group>
+
           <Command.Group heading="Commands">
-            <Item isCommand value="Clipboard History">
-              <Logo>
-                <ClipboardIcon />
-              </Logo>
-              Clipboard History
-            </Item>
-            <Item isCommand value="Import Extension">
-              <HammerIcon />
-              Import Extension
-            </Item>
-            <Item isCommand value="Manage Extensions">
-              <HammerIcon />
-              Manage Extensions
-            </Item>
+            <Command.Item value="toggle website appearence" >
+              <DarkMode theme="filled"
+                style={{
+                  marginBottom: 3,
+                  marginLeft: 3,
+                  width: 15,
+                }}
+              />
+              Toggle Website Appearence
+            </Command.Item>
+
           </Command.Group>
+
+          {/* <Command.Group heading="Resently Posts">
+            {
+              appStateSnapshot.aggregate.aggregatedTop?.posts?.map((item: any, index: number) => {
+                return <Command.Item value={`${CommanderItemType.POSTS}/${item.category.slug}/${item.slug}`} key={item.id} id={item.id}>
+                  {item.title}
+                </Command.Item>
+              })
+            }
+
+          </Command.Group> */}
         </Command.List>
 
         <div cmdk-raycast-footer="">
           <RaycastLightIcon />
 
           <button cmdk-raycast-open-trigger="">
-            Open Application
+            Run It
             <kbd>↵</kbd>
           </button>
 
-          <hr />
+          {/* <hr /> */}
 
-          <SubCommand listRef={listRef} selectedValue={value} inputRef={inputRef} />
+          {/* <SubCommand listRef={listRef} selectedValue={value} inputRef={inputRef} /> */}
         </div>
       </Command.Dialog>
     </div>

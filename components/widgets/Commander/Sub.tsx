@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 13:16:15
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 13:19:11
+ * @LastEditTime: 2022-08-19 17:55:26
  * Coding With IU
  */
 
@@ -73,7 +73,7 @@ export function SubCommand({
             <Command.Group heading={selectedValue}>
               <SubItem shortcut="↵">
                 <WindowIcon />
-                Open Application
+                Run It
               </SubItem>
               <SubItem shortcut="⌘ ↵">
                 <FinderIcon />
