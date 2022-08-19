@@ -94,6 +94,12 @@
 }
 
 .raycast {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+
   ::selection {
     background: hotpink;
     color: white;
@@ -118,7 +124,8 @@
     font-family: var(--font-sans);
     box-shadow: var(--cmdk-shadow);
     border: 1px solid var(--gray6);
-    position: relative;
+    position: fixed;
+    top: 10%;
 
     .dark & {
       background: var(--gray2);
@@ -309,6 +316,8 @@
     color: var(--gray11);
     padding: 0px 4px 0px 8px;
     border-radius: 6px;
+    border-color: transparent;
+    background-color: transparent;
     font-weight: 500;
     font-size: 12px;
     height: 28px;
