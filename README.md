@@ -7,11 +7,13 @@
 
 ## Features
 
-- [X] ⌨️ `Command` + `K` 打开工具箱 (Windows use `ctrl` + `K`, if bug, won't be fixed)
+- [X] ⌨️ `Command` + `K` 打开工具箱
   - [X] Toggle Site Theme (light / dark)
   - [X] Resently Updated
   - [ ] Posts Search
   - [ ] Friendly, Customly Keybindings
+  
+>  ( Windows 系统为 `ctrl` + `K`, 若仅使用 Windows 访问出现 bug 将大概率不会被修复)
 
 ## Usage
 
