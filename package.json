@@ -19,7 +19,7 @@
     "predev": "rimraf .next",
     "dev": "cross-env NODE_ENV=development next dev",
     "build": "cross-env NODE_ENV=production next build",
-    "build:pwa": "sh scripts/build.sh",
+    "build:pwa": "npm run build && sh scripts/build.sh",
     "build:analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
     "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint",

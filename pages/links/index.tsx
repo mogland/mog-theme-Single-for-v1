@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-18 12:57:33
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-20 17:19:35
+ * @LastEditTime: 2022-08-20 19:17:23
  * Coding With IU
  */
 
@@ -44,7 +44,7 @@ const Links: NextPage<any> = (props) => {
 
   useEffect(() => {
     getData();
-  })
+  }, [])
 
   return (
     <>
