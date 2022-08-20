@@ -13,15 +13,6 @@
   - [ ] Posts Search
   - [ ] Friendly, Customly Keybindings
 
-## Preview
-
-<br />
-
-![preview](https://user-images.githubusercontent.com/62133302/185379707-f08ba9ad-ce1c-43d8-b765-6f883f02b7a8.gif)
-
-
-<br />
-
 ## Usage
 
 ```bash
