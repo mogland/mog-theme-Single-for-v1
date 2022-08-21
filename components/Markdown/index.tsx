@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-08 16:01:35
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-21 21:55:46
+ * @LastEditTime: 2022-08-21 22:02:28
  * Coding With IU
  */
 
@@ -19,6 +19,7 @@ import { ensuredForwardRef } from 'react-use'
 import dynamic from 'next/dynamic'
 import { processDetails } from './process-tag'
 import range from 'lodash-es/range'
+import Heading from './renderers/Header'
 
 const TOC = dynamic(() => import('./TOC'), { ssr: false })
 
@@ -83,12 +84,12 @@ const __Markdown: FC<MarkdownProps> = ensuredForwardRef<HTMLDivElement, Markdown
         'img': Image,
         'pre': PreBlock,
         'code': CodeBlock,
-        "h1": (await import('./renderers/Header')).default,
-        "h2": (await import('./renderers/Header')).default,
-        "h3": (await import('./renderers/Header')).default,
-        "h4": (await import('./renderers/Header')).default,
-        "h5": (await import('./renderers/Header')).default,
-        "h6": (await import('./renderers/Header')).default,
+        "h1": Heading(),
+        "h2": Heading(),
+        "h3": Heading(),
+        "h4": Heading(),
+        "h5": Heading(),
+        "h6": Heading(),
       })
     }
 
