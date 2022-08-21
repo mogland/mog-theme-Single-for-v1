@@ -1,9 +1,8 @@
-import { Loading } from "@icon-park/react";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Suspense, useEffect } from "react";
 import { useSnapshot } from "valtio";
+import Markdown from "../../../components/Markdown";
 import appState from "../../../states/appState";
 import { apiClient } from "../../../utils/request.util";
 
@@ -12,10 +11,6 @@ const Comments = dynamic(() => import("../../../components/widgets/Comments"), {
 });
 
 const SEO = dynamic(() => import("../../../components/others/SEO"))
-
-const Markdown = dynamic(() => import("../../../components/Markdown"), {
-  suspense: true,
-});
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await apiClient(`/posts/${ctx.query.category}/${ctx.query.slug}`)
@@ -29,32 +24,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Post: NextPage<any> = (props) => {
 
   const aggregateSnapshot = (useSnapshot(appState) as any).aggregate.aggregatedData;
-
-  useEffect(() => {
-    Array.from(document.querySelectorAll("#write h2")).map((item, index) => {
-      const ele = document.createElement("a")
-      ele.setAttribute("href", `#${item.textContent}`)
-      ele.innerText = item.textContent || "";
-      document.querySelector(".article-list")?.appendChild(ele)
-    })
-    document.body.classList.add("has-trees");
-    return () => {
-      document.body.classList.remove("has-trees");
-    }
-  }, [])
-
-  useEffect(() => {
-    const ele = document.createElement("a")
-    ele.classList.add("toggle-list")
-    ele.onclick = () => {
-      document.querySelector(".article-list")?.classList.toggle("active")
-    }
-    document.querySelector(".buttons")?.appendChild(ele)
-    return () => {
-      document.querySelector(".article-list")?.classList.toggle("active")
-      document.querySelector(".buttons")?.removeChild(ele)
-    }
-  })
 
 
   return (
@@ -93,11 +62,7 @@ const Post: NextPage<any> = (props) => {
           </span>
         </div>
       </section>
-      <article className="post-content">
-        <Suspense fallback={<div><Loading /> Loading...</div>}>
-          <Markdown source={props.data.text} images={props.data.images} />
-        </Suspense>
-      </article>
+      <Markdown source={props.data.text} images={props.data.images} toc/>
       {/* <section className="post-near"></section> */}
       <section className="post-author">
         <figure className="author-avatar">
@@ -114,11 +79,6 @@ const Post: NextPage<any> = (props) => {
       </section>
       <section className="post-comments">
         <Comments type="Post" path={props.data.slug} id={props.data.id} />
-      </section>
-      <section className="article-list">
-        <h4>
-          <span className="title">目录</span>
-        </h4>
       </section>
     </>
   )

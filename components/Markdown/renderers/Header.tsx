@@ -40,3 +40,5 @@ export const Heading: () => React.ElementType<any> = () => {
   // const isClient = useIsClient()
   return RenderHeading
 }
+
+export default Heading

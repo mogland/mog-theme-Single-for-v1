@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/Markdown/renderers/Image.tsx
+ * @FilePath: /nx-theme-Single/components/Markdown/renderers/Image.tsx
  * @author: Wibus
  * @Date: 2022-08-08 17:26:47
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-08 18:02:11
+ * @LastEditTime: 2022-08-21 21:00:23
  * Coding With IU
  */
 import { observer } from 'mobx-react-lite'
@@ -104,3 +104,5 @@ export const Image: FC<any> = (props) => {
   const isClient = isClientSide()
   return !isClient ? <img src={src} alt={alt} /> : <_Image {...props} />
 }
+
+export default Image

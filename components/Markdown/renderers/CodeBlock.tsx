@@ -1,9 +1,9 @@
 /*
- * @FilePath: /nx-theme-tiny/components/Markdown/renderers/CodeBlock.tsx
+ * @FilePath: /nx-theme-Single/components/Markdown/renderers/CodeBlock.tsx
  * @author: Wibus
  * @Date: 2022-08-08 16:57:22
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-08 19:36:34
+ * @LastEditTime: 2022-08-21 21:00:23
  * Coding With IU
  */
 import { Prism } from 'react-syntax-highlighter'
@@ -29,3 +29,5 @@ export const CodeBlock = ({ node, inline, className, children, ...props }) => {
   )
 
 }
+
+export default CodeBlock;
