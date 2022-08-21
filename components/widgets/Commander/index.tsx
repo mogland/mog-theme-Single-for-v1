@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-21 22:18:45
+ * @LastEditTime: 2022-08-21 23:09:50
  * Coding With IU
  */
 
@@ -15,9 +15,11 @@ import { useSnapshot } from "valtio";
 import appState from "../../../states/appState";
 import { CommanderItemType } from "./type";
 import Router, { Router as RouterType } from "next/router";
+import apiClient from "../../../utils/request.util";
 
 export const Commander: FC = () => {
 
+  const appStateSnapshot = useSnapshot(appState) as any
   const [value, setValue] = useState('toggle website appearence')
   const inputRef = useRef<HTMLInputElement | null>(null)
   const listRef = useRef(null)
@@ -27,6 +29,7 @@ export const Commander: FC = () => {
   }, [])
 
   const [open, setOpen] = useState(false)
+  const [suggestionsLoading, setSuggestionsLoading] = useState(true)
 
   const registerRouterEvents = useCallback(() => {
     RouterType.events.on('routeChangeStart', () => {
@@ -59,17 +62,39 @@ export const Commander: FC = () => {
     }
   }, [])
 
-  const appStateSnapshot = useSnapshot(appState) as any
+  const suggestionsRef = useRef<any>(null)
 
-  const valueChangeHandle = (v) => {
-    setValue(v)
-    console.log(value)
-  }
+  useEffect(() => {
+    // 对 inputRef 进行监听，当 inputRef 发生变化，停止变化1s后再进行搜索
+    const handleInputRefChange = (e: Event) => {
+      console.log('inputRef change')
+      setTimeout(() => {
+        setSuggestionsLoading(true)
+        apiClient(`/posts/search?value=${inputRef?.current?.value}`).then(res => {
+          const dataEle = document.querySelectorAll('[data-value*=Suggestion]')
+          res.data.forEach((item: any, index: number) => {
+            const ele = document.createElement('div')
+            ele.setAttribute('cmdk-item', '')
+            ele.setAttribute('role', 'option')
+            ele.setAttribute('data-value', `/posts/${item.category.slug}/${item.slug}`)
+            ele.id = `${item.title}`
+            ele.innerHTML = `<div class="w-full">${item.title}</div> <div class="w-full text-gray-500">${item.text.substring(0, 20)}</div>`
+            suggestionsRef.current?.appendChild(ele)
+          })
+        })
+      }, 1000)
+    }
+    inputRef?.current?.addEventListener('input', handleInputRefChange)
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      inputRef?.current?.removeEventListener('input', handleInputRefChange)
+    }
+  }, [])
 
   return (
     <div className="raycast">
       <Command.Dialog open={open} onOpenChange={setOpen} value={value} onValueChange={(v) => {
-        valueChangeHandle(v)
+        setValue(v)
       }}
         onKeyDownCapture={(e) => {
           if (e.keyCode === 13) {
@@ -84,10 +109,27 @@ export const Commander: FC = () => {
         }}
       >
         <div cmdk-raycast-top-shine="" />
-        <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." />
+        <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." onValueChange={async (v) => {
+          console.log('input value change', v)
+          await apiClient(`/posts/search?value=${v}`).then(res => {
+            const dataEle = document.querySelectorAll('[data-value*=Suggestion]')
+            res.data.forEach((item: any, index: number) => {
+              const ele = document.createElement('div')
+              ele.setAttribute('cmdk-item', '')
+              ele.setAttribute('role', 'option')
+              ele.setAttribute('data-value', `/posts/${item.category.slug}/${item.slug}`)
+              ele.id = `${item.title}`
+              ele.innerHTML = `<div class="w-full">${item.title}</div> <div class="w-full text-gray-500">${item.text.substring(0, 20)}</div>`
+              dataEle[index]?.parentElement?.replaceChild(ele, dataEle[index])
+            })
+          })
+        }} />
         <hr cmdk-raycast-loader="" />
         <Command.List ref={listRef}>
           <Command.Empty>No results found.</Command.Empty>
+
+          <Command.Group heading="Suggestions" ref={suggestionsRef}>
+          </Command.Group>
 
           <Command.Group heading="Commands">
             <Command.Item value="toggle website appearence" >

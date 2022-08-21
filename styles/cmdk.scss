@@ -452,6 +452,16 @@ body.dark-theme {
     white-space: pre-wrap;
     color: var(--gray11);
   }
+
+  [cmdk-loading] {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    white-space: pre-wrap;
+    color: var(--gray11);
+  }
 }
 
 @keyframes loading {
@@ -613,6 +623,16 @@ body.dark-theme {
     height: 64px;
     white-space: pre-wrap;
     font-size: 14px;
+    color: var(--gray11);
+  }
+
+  [cmdk-loading] {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    white-space: pre-wrap;
     color: var(--gray11);
   }
 }
