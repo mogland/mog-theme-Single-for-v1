@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 22:50:22
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 22:57:22
+ * @LastEditTime: 2022-08-21 23:33:16
  * Coding With IU
  */
 
@@ -91,7 +91,7 @@ export const AppLayout: FC<React.PropsWithChildren> = ({ children }) => {
                     aggregateSnapshot.aggregatedTop.posts?.map((item: any) => {
                       return (
                         <li key={item.id}>
-                          <Link href={`/posts/${item.slug}`}>
+                          <Link href={`/posts/${item.category.slug}/${item.slug}`}>
                             <span>{item.title}</span>
                           </Link>
                         </li>
@@ -111,10 +111,10 @@ export const AppLayout: FC<React.PropsWithChildren> = ({ children }) => {
                     aggregateSnapshot.resentlyComments.data?.length && aggregateSnapshot.resentlyComments.data.map((item: any) => {
                       return (
                         <li key={item.id}>
-                          <Link href={`/posts/${item.slug}`}>
+                          <a>
                             <span>{item.author}: </span>
                             <span>{item.text}</span>
-                          </Link>
+                          </a>
                         </li>
                       )
                     }) || (
