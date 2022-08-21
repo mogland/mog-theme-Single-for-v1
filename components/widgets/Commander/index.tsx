@@ -3,7 +3,7 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-21 22:16:40
+ * @LastEditTime: 2022-08-21 22:18:45
  * Coding With IU
  */
 
@@ -41,12 +41,15 @@ export const Commander: FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 112) {
+        e.preventDefault()
         setOpen((open) => !open)
       }
       if (e.keyCode === 75 && e.metaKey || e.keyCode === 75 && e.ctrlKey) {
+        e.preventDefault()
         setOpen((open) => !open)
       }
       if (e.keyCode === 27) {
+        e.preventDefault()
         setOpen(false)
       }
     }
@@ -70,6 +73,7 @@ export const Commander: FC = () => {
       }}
         onKeyDownCapture={(e) => {
           if (e.keyCode === 13) {
+            e.preventDefault()
             if (value === CommanderItemType.THEME) {
               document.body.classList.toggle('dark-theme');
             }
