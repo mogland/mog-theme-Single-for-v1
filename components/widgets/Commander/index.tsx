@@ -3,21 +3,21 @@
  * @author: Wibus
  * @Date: 2022-08-19 11:38:19
  * @LastEditors: Wibus
- * @LastEditTime: 2022-08-19 22:55:18
+ * @LastEditTime: 2022-08-21 22:16:40
  * Coding With IU
  */
 
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { RaycastLightIcon } from "./icon";
 import { DarkMode } from "@icon-park/react";
 import { useSnapshot } from "valtio";
 import appState from "../../../states/appState";
 import { CommanderItemType } from "./type";
-import Router from "next/router";
+import Router, { Router as RouterType } from "next/router";
 
 export const Commander: FC = () => {
-  // const { resolvedTheme: theme } = useTheme()
+
   const [value, setValue] = useState('toggle website appearence')
   const inputRef = useRef<HTMLInputElement | null>(null)
   const listRef = useRef(null)
@@ -28,28 +28,27 @@ export const Commander: FC = () => {
 
   const [open, setOpen] = useState(false)
 
+  const registerRouterEvents = useCallback(() => {
+    RouterType.events.on('routeChangeStart', () => {
+      setOpen(false)
+    })
+  } , [])
+
+  useEffect(() => {
+    registerRouterEvents()
+  } , [registerRouterEvents])
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 112) {
         setOpen((open) => !open)
       }
-      // 如果按下 command + J
       if (e.keyCode === 75 && e.metaKey || e.keyCode === 75 && e.ctrlKey) {
         setOpen((open) => !open)
       }
       if (e.keyCode === 27) {
         setOpen(false)
       }
-      // // 按下 enter 键，执行命令
-      // if (e.keyCode === 13) {
-      //   // message.info(`执行命令：${value}`)
-      //   if (value === CommanderItemType.THEME){
-      //     document.body.classList.toggle('dark-theme');
-      //   }
-      //   if (value.includes(CommanderItemType.POSTS)){
-      //     Router.push(value)
-      //   }
-      // }
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => {
