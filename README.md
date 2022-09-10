@@ -35,6 +35,6 @@ pnpm prod:pm2
 
 ## Author
 
-nx-space © Wibus, Released under the AGPL-3.0 License. Created on 2022-08-12
+MogLand © Wibus, Released under the AGPL-3.0 License. Created on 2022-08-12
 
 > [Personal Website](http://iucky.cn/) · [Blog](https://blog.iucky.cn/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
