@@ -1,4 +1,4 @@
-# NEXT Theme -- Single
+# Mog Theme -- Single
 > 🎈 一个简洁大气，含夜间模式的 NEXT 博客主题
 > 
 > 🎈 A simple and modern theme for **NEXT Space** with night mode.
